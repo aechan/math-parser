@@ -12,9 +12,9 @@ int rpncomputer::evaluate(deque<Token> infix) {
         if(token.type == Token::Type::Number) {
             st.push(token);
         } else if(token.type == Token::Type::Operator) {
-            int a = stoi(st.top().str);
+            int a = st.top().value;
             st.pop();
-            int b = stoi(st.top().str);
+            int b = st.top().value;
             int res;
             if(token.str == "^") {
                 res = a^b;
@@ -31,8 +31,9 @@ int rpncomputer::evaluate(deque<Token> infix) {
             else if (token.str == "-") {
                 res = a - b;
             }
-            st.push(Token(Token::Type::Number, to_string(res)));
+            st.push(Token(Token::Type::Number,res, to_string(res)));
         }
 
     }
+    return st.top().value;
 }

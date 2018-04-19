@@ -17,6 +17,11 @@
         "utility": "cpp",
         "iterator": "cpp",
         "vector": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "__bit_reference": "cpp",
+        "atomic": "cpp",
+        "bitset": "cpp",
+        "locale": "cpp",
+        "system_error": "cpp"
     }
 }

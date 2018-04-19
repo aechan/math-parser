@@ -2,6 +2,8 @@
 #include "util.h"
 #include "token.h"
 #include <deque>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -50,7 +52,7 @@ Token Lexer::readNumber() {
         number += m_currentChar;
         readNextChar();
     }
-    Token t(Token::Type::Number, number, -1, false);
+    Token t(Token::Type::Number, stoi(number), number, -1, false);
     return t;
 }
 

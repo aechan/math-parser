@@ -23,7 +23,7 @@ void runRoutine(string expr) {
     cout << "Now we postfix it." << NL;
     auto postfix = syard::postfix(infix);
     printTokens(postfix);
-    cout << NL << "And the value is: " << rpncomputer::evaluate(postfix);
+    cout << NL << "And the value is: " << rpncomputer::evaluate(postfix) << NL;
 }
 
 void showExample() {
