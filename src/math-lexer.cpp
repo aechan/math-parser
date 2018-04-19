@@ -1,5 +1,8 @@
 #include "math-lexer.h"
 #include "util.h"
+#include "token.h"
+#include <deque>
+
 using namespace std;
 
 Lexer::Lexer(string source) {
@@ -30,7 +33,7 @@ void Lexer::readNextChar() {
 /**
  * Reads next token: a number or a symbol.
  */
-string Lexer::readNextToken() {
+Token Lexer::readNextToken() {
     if (isdigit(m_currentChar))
         return readNumber();
 
@@ -40,28 +43,29 @@ string Lexer::readNextToken() {
 /**
  * Reds a number containing digits.
  */
-string Lexer::readNumber() {
+Token Lexer::readNumber() {
     string number;
 
     while (isdigit(m_currentChar)) {
         number += m_currentChar;
         readNextChar();
     }
-    return number;
+    Token t(Token::Type::Number, number, -1, false);
+    return t;
 }
 
 /**
  * Reads a symbol (operator or grouping).
  */
-string Lexer::readSymbol() {
+Token Lexer::readSymbol() {
     // check for valid symbols
     string t(1, m_currentChar);
     if(util::is_operator(t)) {
         string symbol(1, m_currentChar);
         readNextChar();
-        return symbol;
+        return util::create_token(symbol);
     }
-    return "";
+    return Token(Token::Type::Unknown, "");
     
 }
 
@@ -72,13 +76,13 @@ void Lexer::skipWhiteSpaces() {
 
 /**
 * Tokenizes a source expression, returns
-* a vector with the tokens.
+* a deque with the tokens.
 */
-std::vector<string> Lexer::tokenize(string source) {
-    std::vector<string> tokens;
+deque<Token> Lexer::tokenize(string source) {
+    deque<Token> tokens;
     Lexer lexer(source);
     do {
-        string token = lexer.readNextToken();
+        Token token = lexer.readNextToken();
         
         tokens.push_back(token);
     } while (!lexer.isEOF());

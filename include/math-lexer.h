@@ -5,7 +5,8 @@
 #include <vector>
 #include <string>
 #include <ctype.h>
-
+#include <deque>
+#include "token.h"
 /**
  * Lexer class for simple math expressions.
  * Recognizes only integer numbers and symbols
@@ -21,13 +22,13 @@ private:
 
     void  readNextChar();
     void  skipWhiteSpaces();
-    std::string readNumber();
-    std::string readSymbol();
+    Token readNumber();
+    Token readSymbol();
 
 public:
     Lexer(std::string source);
 
     bool isEOF();
-    std::string readNextToken();
-    static std::vector<std::string> tokenize(std::string);
+    Token readNextToken();
+    static std::deque<Token> tokenize(std::string);
 };

@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -c -Wall -Iinclude
+CFLAGS = -c -Wall -Iinclude -Wc++11-extensions
 LDFLAGS =
 SRC = src/
 SOURCES = $(SRC)math-lexer.cpp $(SRC)main.cpp $(SRC)syard.cpp $(SRC)util.cpp
