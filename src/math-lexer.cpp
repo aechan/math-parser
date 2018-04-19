@@ -1,10 +1,6 @@
 #include "math-lexer.h"
-
+#include "util.h"
 using namespace std;
-// ---------------------------------
-// Lexer implementation.
-// ---------------------------------
-
 
 Lexer::Lexer(string source) {
     m_source = source;
@@ -58,10 +54,15 @@ string Lexer::readNumber() {
  * Reads a symbol (operator or grouping).
  */
 string Lexer::readSymbol() {
-    string symbol;
-    symbol[0] = m_currentChar;
-    readNextChar();
-    return symbol;
+    // check for valid symbols
+    string t(1, m_currentChar);
+    if(util::is_operator(t)) {
+        string symbol(1, m_currentChar);
+        readNextChar();
+        return symbol;
+    }
+    return "";
+    
 }
 
 void Lexer::skipWhiteSpaces() {
@@ -77,7 +78,9 @@ std::vector<string> Lexer::tokenize(string source) {
     std::vector<string> tokens;
     Lexer lexer(source);
     do {
-        tokens.push_back(lexer.readNextToken());
+        string token = lexer.readNextToken();
+        
+        tokens.push_back(token);
     } while (!lexer.isEOF());
     return tokens;
 }

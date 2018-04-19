@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <ctype.h>
 
 /**
  * Lexer class for simple math expressions.

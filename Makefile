@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -c -Wall -Iinclude
 LDFLAGS =
 SRC = src/
-SOURCES = $(SRC)math-lexer.cpp $(SRC)main.cpp
+SOURCES = $(SRC)math-lexer.cpp $(SRC)main.cpp $(SRC)syard.cpp $(SRC)util.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = math
 OUTDIR = out/
