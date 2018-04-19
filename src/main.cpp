@@ -15,18 +15,28 @@ void printTokens(std::deque<Token> tokens) {
     cout << "]" << NL << NL;
 }
 
-void showExample() {
-    string example = "15 * (3 + 17)";
-    cout << "Math expression lexer." << NL << NL;
-    cout << "Example: " << example << NL;
-    deque<Token> infix = Lexer::tokenize(example);
+void runRoutine(string expr) {
+    cout << "Your infix expression tokenized:" << NL;
+    deque<Token> infix = Lexer::tokenize(expr);
     printTokens(infix);
     cout << "Now we postfix it." << NL;
     printTokens(syard::postfix(infix));
 }
 
+void showExample() {
+    string example = "15 * (3 + 17)";
+    runRoutine(example);
+}
+
 int main()
 {
+    cout << "Math expression lexer." << NL << NL;
     showExample();
+    cout << NL << "Now you try" << NL;
+    cout << "Enter a simple math expression: ";
+    string expr;
+    cin >> expr;
+    runRoutine(expr);
+
     return 0;
 }
