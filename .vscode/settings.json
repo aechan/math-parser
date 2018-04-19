@@ -16,6 +16,7 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "iterator": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "string": "cpp"
     }
 }

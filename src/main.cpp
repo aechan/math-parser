@@ -1,6 +1,7 @@
 #include "math-lexer.h"
 #include "syard.h"
 #include "token.h"
+#include "rpncomputer.h"
 #include <deque>
 #define NL std::endl
 
@@ -20,7 +21,9 @@ void runRoutine(string expr) {
     deque<Token> infix = Lexer::tokenize(expr);
     printTokens(infix);
     cout << "Now we postfix it." << NL;
-    printTokens(syard::postfix(infix));
+    auto postfix = syard::postfix(infix);
+    printTokens(postfix);
+    cout << NL << "And the value is: " << rpncomputer::evaluate(postfix);
 }
 
 void showExample() {
